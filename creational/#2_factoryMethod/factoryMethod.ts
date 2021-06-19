@@ -28,7 +28,7 @@ class Snake implements IMonster {
 }
 
 abstract class Player {
-    abstract makeMonster()
+    abstract makeMonster(): IMonster
 
     fightMonster() {
         const monster = this.makeMonster()

@@ -1,41 +1,38 @@
-class Car {
-    constructor() {
-        this.option1 = false
-        this.option2 = false
-        this.option3 = false
-        this.option4 = false
+var Burger = /** @class */ (function () {
+    function Burger() {
+        this.ingredients = [];
     }
-}
-
-class CarBuilder {
-    constructor() {
-        this.car = new Car()
+    Burger.prototype.getIngredientsList = function () {
+        console.table(this.ingredients);
+    };
+    return Burger;
+}());
+var Builder = /** @class */ (function () {
+    function Builder() {
+        this.burger = new Burger();
     }
-
-    addOption1() {
-        this.car.option1 = true
-        return this
-    }
-
-    addOption2() {
-        this.car.option2 = true
-        return this
-    }
-
-    addOption3() {
-        this.car.option3 = true
-        return this
-    }
-
-    addOption4() {
-        this.car.option4 = true
-        return this
-    }
-
-    build() {
-        return this.car
-    }
-}
-
-const newCar = new CarBuilder().addOption1().addOption3().build()
-console.log(newCar);
+    Builder.prototype.addBun = function () {
+        this.burger.ingredients.push('Bun');
+        return this;
+    };
+    Builder.prototype.addLettuce = function () {
+        this.burger.ingredients.push('Lettuce');
+        return this;
+    };
+    Builder.prototype.addCheese = function () {
+        this.burger.ingredients.push('Cheese');
+        return this;
+    };
+    Builder.prototype.addBacon = function () {
+        this.burger.ingredients.push('Bacon');
+        return this;
+    };
+    Builder.prototype.build = function () {
+        return this.burger;
+    };
+    return Builder;
+}());
+var burger1 = new Builder().addBun().addBacon().addCheese().addLettuce().build();
+var burger2 = new Builder().addBun().addBacon().addLettuce().build();
+console.log(burger1.getIngredientsList());
+console.log(burger2.getIngredientsList());
