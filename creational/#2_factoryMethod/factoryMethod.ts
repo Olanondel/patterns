@@ -1,36 +1,36 @@
-interface IMonster {
+interface Monster {
     heals: number
     attack: () => void
 }
 
-class Dragon implements IMonster {
+class Dragon implements Monster {
     heals: number
 
     constructor() {
         this.heals = 60
     }
 
-    attack() {
+    attack(): void {
         this.heals -= 10
     }
 }
 
-class Snake implements IMonster {
+class Snake implements Monster {
     heals: number
 
     constructor() {
         this.heals = 45
     }
 
-    attack() {
+    attack(): void {
         this.heals -= 8
     }
 }
 
 abstract class Player {
-    abstract makeMonster(): IMonster
+    abstract makeMonster(): Monster
 
-    fightMonster() {
+    fightMonster(): Monster {
         const monster = this.makeMonster()
         monster.attack()
         return monster
@@ -38,13 +38,13 @@ abstract class Player {
 }
 
 class Warrior extends Player {
-    makeMonster() {
+    makeMonster(): Monster {
         return new Dragon()
     }
 }
 
 class Knight extends Player {
-    makeMonster() {
+    makeMonster(): Monster {
         return new Snake()
     }
 }
