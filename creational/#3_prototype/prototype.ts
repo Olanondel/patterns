@@ -1,15 +1,20 @@
-class Car {
-    model: string
-    color: string
-    maxSpeed: number
+interface UserPrototype {
+    clone()
+}
 
-    constructor(model, color, maxSpeed) {
-        this.model = model
-        this.color = color
-        this.maxSpeed = maxSpeed
-    }
+class User implements UserPrototype {
+    constructor(public name: string, public age: number, public position: string) {}
 
-    clone() {
-        return new Car(this.model, this.color, this.maxSpeed)
+    clone(): User {
+        return new User(this.name, this.age, this.position)
     }
 }
+
+const user = new User('oleg', 25, 'intern')
+
+const cloneUser = user.clone()
+cloneUser.name = 'John'
+cloneUser.age = 30
+cloneUser.position = 'Senior Js Developer'
+
+console.log(cloneUser);

@@ -1,40 +1,30 @@
-class Burger {
-    ingredients: string[] = []
+class UserBuilder {
+    position: string
+    phone: number
+    id: number
 
-    getIngredientsList(): void {
-        console.table(this.ingredients)
+    constructor(public name: string, public age: number) {}
+
+    setPosition(position: string): UserBuilder {
+        this.position = position
+        return this
+    }
+
+    setPhone(phone: number): UserBuilder {
+        this.phone = phone
+        return this
+    }
+
+    setId(id: number): UserBuilder {
+        this.id = id
+        return this
+    }
+
+    build(): UserBuilder {
+        return this
     }
 }
 
-class Builder {
-    private burger: Burger = new Burger()
+const user = new UserBuilder('oleg', 25).setId(1).setPosition('intern').setPhone(1234567).build()
 
-    addBun(): Builder {
-        this.burger.ingredients.push('Bun')
-        return this
-    }
-
-    addLettuce(): Builder {
-        this.burger.ingredients.push('Lettuce')
-        return this
-    }
-
-    addCheese(): Builder {
-        this.burger.ingredients.push('Cheese')
-        return this
-    }
-
-    addBacon(): Builder {
-        this.burger.ingredients.push('Bacon')
-        return this
-    }
-
-    build(): Burger {
-        return this.burger
-    }
-}
-
-const burger1 = new Builder().addBun().addBacon().addCheese().addLettuce().build()
-const burger2 = new Builder().addBun().addBacon().addLettuce().build()
-burger1.getIngredientsList()
-burger2.getIngredientsList()
+console.log(user)
